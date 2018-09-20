@@ -1,0 +1,27 @@
+{
+  "name": "jean-list-control",
+  "version": "0.0.0",
+  "description": "Provides functionality for displaying data as a list",
+  "main": "dist/jean-list-control.js",
+  "scripts": {
+    "test": "open spec/spec-runner.html in browser"
+  },
+  "keywords": [],
+  "author": "Jeremias Andris",
+  "license": "MIT",
+  "dependencies": {
+    "jean-amd": "1.0.1",
+    "jean-dom-element": "^1.1.0",
+    "jean-dom-util": "^1.2.1",
+    "jean-failure": "^1.0.1",
+    "jean-inheritance": "^1.0.4",
+    "jean-type-check": "^1.5.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/je-an/jean-list-control.git"
+  },
+  "devDependencies": {
+    "jean-performance": "^1.0.2"
+  }
+}
