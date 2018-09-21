@@ -23,6 +23,8 @@
     "url": "https://github.com/je-an/jean-list-control.git"
   },
   "devDependencies": {
-    "jean-performance": "^1.0.2"
+    "jean-performance": "^1.0.2",
+    "require-css": "^0.1.10",
+    "text": "github:requirejs/text"
   }
 }

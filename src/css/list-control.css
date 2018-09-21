@@ -1,0 +1,13 @@
+.jean-list-control {
+  color: black;
+  width: 100%;
+  border-radius: 5px;
+  border: 1px solid black;
+  padding: 5px;
+}
+.jean-list-control #body {
+  overflow-y: scroll;
+}
+.jean-list-control #body #jean-list-element {
+  color: black;
+}
