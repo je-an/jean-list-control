@@ -38,9 +38,6 @@
 }
 .jean-list-control .body .jean-list-element .body {
   overflow: hidden;
-  /* .details {
-                    height: 100%;
-                } */
 }
 .jean-list-control .body .jean-list-element .body-no-height {
   height: 0;
