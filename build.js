@@ -26,7 +26,7 @@
         TypeCheck: "node_modules/jean-type-check/src/TypeCheck",
         Failure: "node_modules/jean-failure/src/Failure",
         Inheritance: "node_modules/jean-inheritance/dist/jean-inheritance",
-        DomElement: "node_modules/jean-dom-element/dist/jean-dom-element",
+        ListControlBase: "node_modules/jean-list-control-base/dist/jean-list-control-base",
         DomUtil: "node_modules/jean-dom-util/dist/jean-dom-util",
         Merge: "node_modules/jean-merge/dist/jean-merge",
         "list-control-html": "src/html/list-control.html",

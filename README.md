@@ -23,7 +23,23 @@ require(["path/to/ListControl"], function(ListControl){
 
 ## API Reference
 
-TBD
+### ListControl Constructor
+
+**Options**
+- **height**: `Number` - `optional` - height of the list in px
+
+
+### ListControl.set(id, name, description) 
+
+Set an entry to the list
+
+**Parameters**
+- **id**: `String` - id of the list entry
+- **name**: `String` - name of the list entry
+- **details**: `String` - detail information of the list entry
+
+**Returns**
+- `Boolean` - True, if the new list entry could be set, otherwise exception
 
 ## Tests
 
