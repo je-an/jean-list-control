@@ -12,11 +12,11 @@
   "dependencies": {
     "jean-amd": "^1.0.3",
     "jean-dom-element": "^1.1.1",
-    "jean-dom-util": "^1.2.1",
+    "jean-dom-util": "^1.2.2",
     "jean-failure": "^1.0.1",
     "jean-inheritance": "^1.0.4",
     "jean-merge": "^1.0.0",
-    "jean-type-check": "^1.5.0"
+    "jean-type-check": "^1.5.1"
   },
   "repository": {
     "type": "git",
