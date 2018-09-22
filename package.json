@@ -11,10 +11,10 @@
   "license": "MIT",
   "dependencies": {
     "jean-amd": "^1.0.3",
-    "jean-dom-util": "^1.2.2",
+    "jean-dom-util": "^1.2.3",
     "jean-failure": "^1.0.1",
     "jean-inheritance": "^1.0.4",
-    "jean-list-control-base": "^1.0.0",
+    "jean-list-control-base": "^1.0.1",
     "jean-merge": "^1.0.0",
     "jean-type-check": "^1.5.1"
   },

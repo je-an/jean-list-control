@@ -33,15 +33,21 @@ define([ // jscs:ignore
 
             this._listElement = DomUtil.createElementFromMarkup(elementHtml);
             this._listElementFragment = document.createDocumentFragment();
-            this.body = DomUtil.getChildById(this.element, "body");
+            var body = this.body = DomUtil.getChildByClass(this.element, "body");
+            body.addEventListener("click", this._onEntryClick.bind(this));
 
             if (options.height > 0) {
-                this.body.style.height = options.height + "px";
+                body.style.height = options.height + "px";
             }
         };
         Inheritance.inheritPrototype(ListControl, ListControlBase);
         // Have to be exposed for unit testing purposes
         ListControl.ListControlBase = ListControlBase;
+        /** */
+        ListControl.ToggleValue = ListControl.prototype.ToggleValue = {
+            COLLAPSED: 0,
+            DISPLAYED: 1
+        };
         /** */
         ListControl.prototype.commit = function () {
             this.body.appendChild(this._listElementFragment);
@@ -55,26 +61,23 @@ define([ // jscs:ignore
          * @param {String} details - detail information of the list element
          */
         ListControl.prototype.add = function (id, name, details) {
-            if (!TypeCheck.isString(id)) {
-                Failure.throwTypeError("id is not a string");
+            if (!this._areValuesValid(id, name, details)) {
+                Failure.throwTypeError("provided values are invalid");
             }
-            if (!TypeCheck.isString(name)) {
-                Failure.throwTypeError("name is not a string");
-            }
-            if (!TypeCheck.isString(details)) {
-                Failure.throwTypeError("details is not a string");
-            }
-            var listElement = this._listElement, node = listElement.cloneNode(true),
+            var listElement = this._listElement, entry = listElement.cloneNode(true),
                 fragment = this._listElementFragment;
-            node.setAttribute("id", id);
-            DomUtil.getChildById(node, "name").innerHTML = name;
-            DomUtil.getChildById(node, "details").innerHTML = details;
-            fragment.appendChild(node);
+            entry.setAttribute("id", id);
+            this._setEntryValue(entry, name, details);
+            fragment.appendChild(entry);
             return true;
         };
         /** */
-        ListControl.prototype.update = function () {
-
+        ListControl.prototype.update = function (id, name, details) {
+            if (!this._areValuesValid(id, name, details)) {
+                Failure.throwTypeError("provided values are invalid");
+            }
+            this._setEntryValue(DomUtil.getChildById(this.body, id), name, details);
+            return true;
         };
         /** */
         ListControl.prototype.get = function () {
@@ -95,6 +98,39 @@ define([ // jscs:ignore
         /** */
         ListControl.prototype.unlock = function () {
 
+        };
+        /** */
+        ListControl.prototype._setEntryValue = function (node, name, details) {
+            DomUtil.getChildByClass(node, "name").innerHTML = name;
+            DomUtil.getChildByClass(node, "details").innerHTML = details;
+        }
+        /** */
+        ListControl.prototype._areValuesValid = function (id, name, details) {
+            return TypeCheck.isString(id) && TypeCheck.isString(name) && TypeCheck.isString(details);
+        };
+        /** */
+        ListControl.prototype._onEntryClick = function (e) {
+            var entry = DomUtil.getAncestorByClass(e.target, "jean-list-element"),
+                value = entry.getAttribute("data-state"),
+                body = DomUtil.getChildByClass(entry, "body"),
+                separator = DomUtil.getChildByClass(entry, "separator"),
+                toggle = DomUtil.getChildByClass(entry, "toggle");
+            switch (parseInt(value)) {
+                case this.ToggleValue.COLLAPSED:
+                    // Display it
+                    entry.setAttribute("data-state", this.ToggleValue.DISPLAYED);
+                    separator.classList.remove("separator-invisible");
+                    body.classList.remove("body-no-height");
+                    toggle.innerHTML = "&and;";
+                    break;
+                case this.ToggleValue.DISPLAYED:
+                    // Collapse it
+                    entry.setAttribute("data-state", this.ToggleValue.COLLAPSED);
+                    separator.classList.add("separator-invisible");
+                    body.classList.add("body-no-height");
+                    toggle.innerHTML = "&or;";
+                    break;
+            }
         };
         return ListControl;
     });

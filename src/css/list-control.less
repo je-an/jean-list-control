@@ -1,16 +1,54 @@
-@font-color: black;
+@font-color: white;
 @border-color: black;
 @border-radius: 5px;
+@background-color: gray;
+@list-element-top-margin: 5px;
+@hover-color: lightgray;
 .jean-list-control {
     color: @font-color;
     width: 100%;
     border-radius: @border-radius;
     border: 1px solid @border-color;
     padding: 5px;
-    #body {
+    .body {
         overflow-y: scroll;
-        #jean-list-element {
+        .jean-list-element {
+            padding: 5px;
+            margin-top: @list-element-top-margin;
             color: @font-color;
+            background: @background-color;
+            border-radius: @border-radius;
+            .header {
+                position: relative;
+                cursor: pointer;
+                &:hover {
+                    color: @hover-color;
+                }
+                .name {}
+                .toggle {
+                    position: absolute;
+                    top: 0;
+                    right: 5;
+                    font-weight: bold;
+                }
+            }
+            .separator {
+                width: 100%;
+                height: 2px;
+                background: white;     
+            }
+            .separator-invisible{
+                visibility: hidden;
+            }
+            .body {
+                overflow: hidden;
+                /* .details {
+                    height: 100%;
+                } */
+            }
+            .body-no-height{
+                height: 0;
+            }
         }
     }
 }

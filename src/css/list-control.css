@@ -1,13 +1,47 @@
 .jean-list-control {
-  color: black;
+  color: white;
   width: 100%;
   border-radius: 5px;
   border: 1px solid black;
   padding: 5px;
 }
-.jean-list-control #body {
+.jean-list-control .body {
   overflow-y: scroll;
 }
-.jean-list-control #body #jean-list-element {
-  color: black;
+.jean-list-control .body .jean-list-element {
+  padding: 5px;
+  margin-top: 5px;
+  color: white;
+  background: gray;
+  border-radius: 5px;
+}
+.jean-list-control .body .jean-list-element .header {
+  position: relative;
+  cursor: pointer;
+}
+.jean-list-control .body .jean-list-element .header:hover {
+  color: lightgray;
+}
+.jean-list-control .body .jean-list-element .header .toggle {
+  position: absolute;
+  top: 0;
+  right: 5;
+  font-weight: bold;
+}
+.jean-list-control .body .jean-list-element .separator {
+  width: 100%;
+  height: 2px;
+  background: white;
+}
+.jean-list-control .body .jean-list-element .separator-invisible {
+  visibility: hidden;
+}
+.jean-list-control .body .jean-list-element .body {
+  overflow: hidden;
+  /* .details {
+                    height: 100%;
+                } */
+}
+.jean-list-control .body .jean-list-element .body-no-height {
+  height: 0;
 }

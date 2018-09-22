@@ -1,6 +1,6 @@
 ## Description
 
-Provides functionality for displaying data as a list
+Provides functionality for displaying data as a list -> Work in progress
 
 ## Support
 Supports AMD eco system. If there is no loader, ListControl is registered as a browser variable.

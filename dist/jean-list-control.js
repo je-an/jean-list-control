@@ -704,14 +704,14 @@ define('src/ListControlBase',[
  	 return require('src/ListControlBase'); 
 }));
 
-!function(n,r){"function"==typeof define&&define.amd?define('DomUtil',[],r):(n.DomUtil=n.DomUtil||{},n.DomUtil=r())}(this,function(){var n,r;return function(e){function t(n){for(var r=0,e=[];r<n.length;r++){var t=s.resolved[n[r]];t&&e.push(t)}return e}function i(){for(var n in s.unresolved){var r=s.unresolved[n],e=t(r.dependencies);o(n,r.factory,r.dependencies,e,!1)}}function o(n,r,e,t,i){if(t.length===e.length){var o=r.apply(r,t);s.resolved[n]=o||{}}else i&&(s.unresolved[n]={dependencies:e,factory:r})}var s={resolved:{},unresolved:{}};r=function(n,r,e){return s.resolved[n]?void console.warn("There is already a module with id <"+n+"> defined. Therefore this module will be ignored"):"string"==typeof n&&Array.isArray(r)&&"function"==typeof e?(0===r.length?o(n,e,r,[],!1):o(n,e,r,t(r),!0),void i()):void console.warn("Passed arguments for module are invalid")},r.amd={},n=function(n,r){n=Array.isArray(n)?n:[n];var e=t(n);if(1===e.length&&!r)return e[0];if(e.length!==n.length||!r)throw new Error("Not all modules are resolved");r.apply(r,e)}}(),r("node_modules/jean-amd/dist/jean-amd",function(){}),r("TypeCheck",[],function(){return{isString:function(n){return"string"==typeof n},isBoolean:function(n){return"boolean"==typeof n},isNumber:function(n){return"number"==typeof n},isObject:function(n){return!this.isArray(n)&&null!==n&&"object"==typeof n},isEmptyObject:function(n){var r=!1;return this.isObject(n)&&0===Object.keys(n).length&&(r=!0),r},isFunction:function(n){return"function"==typeof n},isDefined:function(n){return void 0!==n&&null!=n},isArray:function(n){return Array.isArray(n)},isEmptyArray:function(n){return this.isArray(n)&&0===n.length},isArrayTypeOf:function(n,r){var e=!0;if(!this.isString(r))throw new TypeError("options.type is not a string");if(!Array.isArray(n))throw new TypeError("options.array is not an array");0===n.length&&(e=!1);for(var t=0,i=n.length;t<i;t++){if(typeof n[t]!==r){e=!1;break}}return e},areObjectsInstanceOf:function(n,r){if(!this.isArray(n))throw new TypeError("array is not an array");if(!this.isFunction(r))throw new TypeError("fn is not a function");var e,t,i=n.length,o=!0;for(e=0;e<i;e++)if(t=n[e],!this.isObject(t)||!this.isInstanceOf(t,r)){o=!1;break}return o},areObjectsInstancesOf:function(n,r){var e,t,i,o,s=n.length,a=r.length,f=!0;if(!this.isArray(n))throw new TypeError("objects is not an array");if(!this.isArray(r))throw new TypeError("constructors is not an array");if(!this.isArrayTypeOf(r,"function"))throw new TypeError("constructors is not an array of constructor functions");for(e=0;e<s;e++){for(i=n[e],o=!0,t=0;t<a&&this.isObject(i);t++)if(this.isInstanceOf(i,r[t])){o=!1;break}if(!0===o){f=!1;break}}return f},isInstanceOf:function(n,r){if(!this.isObject(n))throw new TypeError("child is not an object");if(!this.isFunction(r))throw new TypeError("parent is not a function");return n instanceof r},isEnumValue:function(n,r){if(!this.isString(n)&&!this.isNumber(n))throw new TypeError("value must be a String or a Number");if(!this.isObject(r))throw new TypeError("o is not an object");var e,t=Object.keys(r),i=t.length,o=!1;for(e=0;e<i;e++)if(r[t[e]]===n){o=!0;break}return o}}}),r("Failure",[],function(){return{throwError:function(n){throw new Error(n)},throwTypeError:function(n){throw new TypeError(n)}}}),r("src/DomUtil",["TypeCheck","Failure"],function(n,r){return{createElementFromMarkup:function(e){n.isString(e)||r.throwTypeError("html is not a string");var t=document.createElement("div");return t.innerHTML=e.trim(),t.firstChild},isInViewPort:function(e){n.isInstanceOf(e,HTMLElement)||r.throwTypeError("element is not an instance of HTMLElement");var t=e.getBoundingClientRect();return t.top+t.height>0&&t.top<window.innerHeight},getChildById:function(e,t){n.isInstanceOf(e,HTMLElement)||r.throwTypeError("element is no instance of HTMLElement"),n.isString(t)||r.throwTypeError("id is not a string");var i,o,s=e.children,a=s.length,f=null;for(i=0;i<a;i++)if(o=s[i],o.id===t)return o;for(i=0;i<a;i++)if(f=this.getChildById(s[i],t),n.isDefined(f))return f;return null},getChildByClass:function(e,t){n.isInstanceOf(e,HTMLElement)||r.throwTypeError("element is no instance of HTMLElement"),n.isString(t)||r.throwTypeError("className is not a string");var i,o,s=e.children,a=s.length,f=null;for(i=0;i<a;i++)if(o=s[i],o.classList.contains(t))return o;for(i=0;i<a;i++)if(f=this.getChildByClass(s[i],t),n.isDefined(f))return f;return null},getAncestorById:function(e,t){return n.isInstanceOf(e,HTMLElement)||r.throwTypeError("element is no instance of HTMLElement"),n.isString(t)||r.throwTypeError("id is not a string"),n.isDefined(e.parentElement)?e.parentElement.id===t?e.parentElement:this.getAncestorById(e.parentElement,t):null},getAncestorByClass:function(e,t){return n.isInstanceOf(e,HTMLElement)||r.throwTypeError("element is no instance of HTMLElement"),n.isString(t)||r.throwTypeError("className is not a string"),n.isDefined(e.parentElement)?e.parentElement.classList.contains(t)?e.parentElement:this.getAncestorById(e.parentElement,t):null}}}),n("src/DomUtil")});
+!function(n,r){"function"==typeof define&&define.amd?define('DomUtil',[],r):(n.DomUtil=n.DomUtil||{},n.DomUtil=r())}(this,function(){var n,r;return function(e){function t(n){for(var r=0,e=[];r<n.length;r++){var t=s.resolved[n[r]];t&&e.push(t)}return e}function i(){for(var n in s.unresolved){var r=s.unresolved[n],e=t(r.dependencies);o(n,r.factory,r.dependencies,e,!1)}}function o(n,r,e,t,i){if(t.length===e.length){var o=r.apply(r,t);s.resolved[n]=o||{}}else i&&(s.unresolved[n]={dependencies:e,factory:r})}var s={resolved:{},unresolved:{}};r=function(n,r,e){return s.resolved[n]?void console.warn("There is already a module with id <"+n+"> defined. Therefore this module will be ignored"):"string"==typeof n&&Array.isArray(r)&&"function"==typeof e?(0===r.length?o(n,e,r,[],!1):o(n,e,r,t(r),!0),void i()):void console.warn("Passed arguments for module are invalid")},r.amd={},n=function(n,r){n=Array.isArray(n)?n:[n];var e=t(n);if(1===e.length&&!r)return e[0];if(e.length!==n.length||!r)throw new Error("Not all modules are resolved");r.apply(r,e)}}(),r("node_modules/jean-amd/dist/jean-amd",function(){}),r("TypeCheck",[],function(){return{isString:function(n){return"string"==typeof n},isBoolean:function(n){return"boolean"==typeof n},isNumber:function(n){return"number"==typeof n},isObject:function(n){return!this.isArray(n)&&null!==n&&"object"==typeof n},isEmptyObject:function(n){var r=!1;return this.isObject(n)&&0===Object.keys(n).length&&(r=!0),r},isFunction:function(n){return"function"==typeof n},isDefined:function(n){return void 0!==n&&null!=n},isArray:function(n){return Array.isArray(n)},isEmptyArray:function(n){return this.isArray(n)&&0===n.length},isArrayTypeOf:function(n,r){var e=!0;if(!this.isString(r))throw new TypeError("options.type is not a string");if(!Array.isArray(n))throw new TypeError("options.array is not an array");0===n.length&&(e=!1);for(var t=0,i=n.length;t<i;t++){if(typeof n[t]!==r){e=!1;break}}return e},areObjectsInstanceOf:function(n,r){if(!this.isArray(n))throw new TypeError("array is not an array");if(!this.isFunction(r))throw new TypeError("fn is not a function");var e,t,i=n.length,o=!0;for(e=0;e<i;e++)if(t=n[e],!this.isObject(t)||!this.isInstanceOf(t,r)){o=!1;break}return o},areObjectsInstancesOf:function(n,r){var e,t,i,o,s=n.length,a=r.length,f=!0;if(!this.isArray(n))throw new TypeError("objects is not an array");if(!this.isArray(r))throw new TypeError("constructors is not an array");if(!this.isArrayTypeOf(r,"function"))throw new TypeError("constructors is not an array of constructor functions");for(e=0;e<s;e++){for(i=n[e],o=!0,t=0;t<a&&this.isObject(i);t++)if(this.isInstanceOf(i,r[t])){o=!1;break}if(!0===o){f=!1;break}}return f},isInstanceOf:function(n,r){if(!this.isObject(n))throw new TypeError("child is not an object");if(!this.isFunction(r))throw new TypeError("parent is not a function");return n instanceof r},isEnumValue:function(n,r){if(!this.isString(n)&&!this.isNumber(n))throw new TypeError("value must be a String or a Number");if(!this.isObject(r))throw new TypeError("o is not an object");var e,t=Object.keys(r),i=t.length,o=!1;for(e=0;e<i;e++)if(r[t[e]]===n){o=!0;break}return o}}}),r("Failure",[],function(){return{throwError:function(n){throw new Error(n)},throwTypeError:function(n){throw new TypeError(n)}}}),r("src/DomUtil",["TypeCheck","Failure"],function(n,r){return{createElementFromMarkup:function(e){n.isString(e)||r.throwTypeError("html is not a string");var t=document.createElement("div");return t.innerHTML=e.trim(),t.firstChild},isInViewPort:function(e){n.isInstanceOf(e,HTMLElement)||r.throwTypeError("element is not an instance of HTMLElement");var t=e.getBoundingClientRect();return t.top+t.height>0&&t.top<window.innerHeight},getChildById:function(e,t){n.isInstanceOf(e,HTMLElement)||r.throwTypeError("element is no instance of HTMLElement"),n.isString(t)||r.throwTypeError("id is not a string");var i,o,s=e.children,a=s.length,f=null;for(i=0;i<a;i++)if(o=s[i],o.id===t)return o;for(i=0;i<a;i++)if(f=this.getChildById(s[i],t),n.isDefined(f))return f;return null},getChildByClass:function(e,t){n.isInstanceOf(e,HTMLElement)||r.throwTypeError("element is no instance of HTMLElement"),n.isString(t)||r.throwTypeError("className is not a string");var i,o,s=e.children,a=s.length,f=null;for(i=0;i<a;i++)if(o=s[i],o.classList.contains(t))return o;for(i=0;i<a;i++)if(f=this.getChildByClass(s[i],t),n.isDefined(f))return f;return null},getAncestorById:function(e,t){return n.isInstanceOf(e,HTMLElement)||r.throwTypeError("element is no instance of HTMLElement"),n.isString(t)||r.throwTypeError("id is not a string"),n.isDefined(e.parentElement)?e.parentElement.id===t?e.parentElement:this.getAncestorById(e.parentElement,t):null},getAncestorByClass:function(e,t){return n.isInstanceOf(e,HTMLElement)||r.throwTypeError("element is no instance of HTMLElement"),n.isString(t)||r.throwTypeError("className is not a string"),n.isDefined(e.parentElement)?e.parentElement.classList.contains(t)?e.parentElement:this.getAncestorByClass(e.parentElement,t):null}}}),n("src/DomUtil")});
 !function(r,e){"function"==typeof define&&define.amd?define('Merge',[],e):"object"==typeof module&&module.exports?module.exports=e():(r.Merge=r.Merge||{},r.Merge=e())}(this,function(){var r,e;return function(n){function t(r){for(var e=0,n=[];e<r.length;e++){var t=s.resolved[r[e]];t&&n.push(t)}return n}function o(){for(var r in s.unresolved){var e=s.unresolved[r],n=t(e.dependencies);i(r,e.factory,e.dependencies,n,!1)}}function i(r,e,n,t,o){t.length===n.length?s.resolved[r]=e.apply(e,t):o&&(s.unresolved[r]={dependencies:n,factory:e})}var s={resolved:{},unresolved:{}};e=function(r,e,n){return s.resolved[r]?void console.warn("There is already a module with id <"+r+"> defined. Therefore this module will be ignored"):"string"==typeof r&&Array.isArray(e)&&"function"==typeof n?(0===e.length?i(r,n,e,[],!1):i(r,n,e,t(e),!0),void o()):void console.warn("Passed arguments for module are invalid")},e.amd={},r=function(r,e){r=Array.isArray(r)?r:[r];var n=t(r);if(1===n.length&&!e)return n[0];if(n.length!==r.length||!e)throw new Error("Not all modules are resolved");e.apply(e,n)}}(),e("node_modules/jean-amd/dist/jean-amd",function(){}),e("TypeCheck",[],function(){return{isString:function(r){return"string"==typeof r},isBoolean:function(r){return"boolean"==typeof r},isNumber:function(r){return"number"==typeof r},isObject:function(r){var e=!1;if(this.isString(r)||this.isFunction(r))return!1;if(this.isEmptyObject(r))return!0;for(var n in r)if(r.hasOwnProperty(n)){e=!0;break}return e},isEmptyObject:function(r){var e=!0;if(!this.isDefined(r)||this.isBoolean(r)||this.isFunction(r)||this.isNumber(r)||this.isString(r)||Array.isArray(r))return!1;for(var n in r)if(r.hasOwnProperty(n)){e=!1;break}return e},isFunction:function(r){return"function"==typeof r},isDefined:function(r){return void 0!==r&&null!=r},isArray:function(r){return Array.isArray(r)},isArrayTypeOf:function(r,e){var n=!0;if(!this.isString(e))throw new TypeError("options.type is not a string");if(!Array.isArray(r))throw new TypeError("options.array is not an array");0===r.length&&(n=!1);for(var t=0,o=r.length;t<o;t++){if(typeof r[t]!==e){n=!1;break}}return n}}}),e("Failure",[],function(){return{throwError:function(r){throw new Error(r)},throwTypeError:function(r){throw new TypeError(r)}}}),e("src/Merge",["TypeCheck","Failure"],function(r,e){return function(n,t){r.isObject(n)&&r.isObject(t)||e.throwTypeError("defaultOptions or options is not an object");var o,i,s={},u=Object.keys(t),a=u.length,f=Object.keys(n),c=f.length;for(o=0;o<c;o++)i=f[o],s[i]=n[i];for(o=0;o<a;o++)i=u[o],s[i]=t[i];return s}}),r("src/Merge")});
 define('text',{load: function(id){throw new Error("Dynamic load not allowed: " + id);}});
 
-define('text!list-control-html',[],function () { return '<div class="jean-list-control">\r\n    <div id="body">\r\n\r\n    </div>\r\n</div>';});
+define('text!list-control-html',[],function () { return '<div class="jean-list-control">\r\n    <div class="body">\r\n\r\n    </div>\r\n</div>';});
 
 
-define('text!list-element-html',[],function () { return '<div id="jean-list-element">\r\n    <div id="name">\r\n\r\n    </div>\r\n    <div id="details">\r\n        \r\n    </div>\r\n</div>';});
+define('text!list-element-html',[],function () { return '<div class="jean-list-element" data-state="0">\r\n    <div class=header>\r\n        <div class="name">\r\n\r\n        </div>\r\n        <div class="toggle">&or;</div>\r\n    </div>\r\n    <div class="separator separator-invisible"></div>\r\n    <div class="body body-no-height">\r\n        <div class="details">\r\n\r\n        </div>\r\n    </div>\r\n</div>';});
 
 define('normalize',{});
 define('css',{load: function(id){throw new Error("Dynamic load not allowed: " + id);}});
@@ -752,15 +752,21 @@ define('src/ListControl',[ // jscs:ignore
 
             this._listElement = DomUtil.createElementFromMarkup(elementHtml);
             this._listElementFragment = document.createDocumentFragment();
-            this.body = DomUtil.getChildById(this.element, "body");
+            var body = this.body = DomUtil.getChildByClass(this.element, "body");
+            body.addEventListener("click", this._onEntryClick.bind(this));
 
             if (options.height > 0) {
-                this.body.style.height = options.height + "px";
+                body.style.height = options.height + "px";
             }
         };
         Inheritance.inheritPrototype(ListControl, ListControlBase);
         // Have to be exposed for unit testing purposes
         ListControl.ListControlBase = ListControlBase;
+        /** */
+        ListControl.ToggleValue = ListControl.prototype.ToggleValue = {
+            COLLAPSED: 0,
+            DISPLAYED: 1
+        };
         /** */
         ListControl.prototype.commit = function () {
             this.body.appendChild(this._listElementFragment);
@@ -774,26 +780,23 @@ define('src/ListControl',[ // jscs:ignore
          * @param {String} details - detail information of the list element
          */
         ListControl.prototype.add = function (id, name, details) {
-            if (!TypeCheck.isString(id)) {
-                Failure.throwTypeError("id is not a string");
+            if (!this._areValuesValid(id, name, details)) {
+                Failure.throwTypeError("provided values are invalid");
             }
-            if (!TypeCheck.isString(name)) {
-                Failure.throwTypeError("name is not a string");
-            }
-            if (!TypeCheck.isString(details)) {
-                Failure.throwTypeError("details is not a string");
-            }
-            var listElement = this._listElement, node = listElement.cloneNode(true),
+            var listElement = this._listElement, entry = listElement.cloneNode(true),
                 fragment = this._listElementFragment;
-            node.setAttribute("id", id);
-            DomUtil.getChildById(node, "name").innerHTML = name;
-            DomUtil.getChildById(node, "details").innerHTML = details;
-            fragment.appendChild(node);
+            entry.setAttribute("id", id);
+            this._setEntryValue(entry, name, details);
+            fragment.appendChild(entry);
             return true;
         };
         /** */
-        ListControl.prototype.update = function () {
-
+        ListControl.prototype.update = function (id, name, details) {
+            if (!this._areValuesValid(id, name, details)) {
+                Failure.throwTypeError("provided values are invalid");
+            }
+            this._setEntryValue(DomUtil.getChildById(this.body, id), name, details);
+            return true;
         };
         /** */
         ListControl.prototype.get = function () {
@@ -815,11 +818,44 @@ define('src/ListControl',[ // jscs:ignore
         ListControl.prototype.unlock = function () {
 
         };
+        /** */
+        ListControl.prototype._setEntryValue = function (node, name, details) {
+            DomUtil.getChildByClass(node, "name").innerHTML = name;
+            DomUtil.getChildByClass(node, "details").innerHTML = details;
+        }
+        /** */
+        ListControl.prototype._areValuesValid = function (id, name, details) {
+            return TypeCheck.isString(id) && TypeCheck.isString(name) && TypeCheck.isString(details);
+        };
+        /** */
+        ListControl.prototype._onEntryClick = function (e) {
+            var entry = DomUtil.getAncestorByClass(e.target, "jean-list-element"),
+                value = entry.getAttribute("data-state"),
+                body = DomUtil.getChildByClass(entry, "body"),
+                separator = DomUtil.getChildByClass(entry, "separator"),
+                toggle = DomUtil.getChildByClass(entry, "toggle");
+            switch (parseInt(value)) {
+                case this.ToggleValue.COLLAPSED:
+                    // Display it
+                    entry.setAttribute("data-state", this.ToggleValue.DISPLAYED);
+                    separator.classList.remove("separator-invisible");
+                    body.classList.remove("body-no-height");
+                    toggle.innerHTML = "&and;";
+                    break;
+                case this.ToggleValue.DISPLAYED:
+                    // Collapse it
+                    entry.setAttribute("data-state", this.ToggleValue.COLLAPSED);
+                    separator.classList.add("separator-invisible");
+                    body.classList.add("body-no-height");
+                    toggle.innerHTML = "&or;";
+                    break;
+            }
+        };
         return ListControl;
     });
 
 (function(c){var d=document,a='appendChild',i='styleSheet',s=d.createElement('style');s.type='text/css';d.getElementsByTagName('head')[0][a](s);s[i]?s[i].cssText=c:s[a](d.createTextNode(c));})
-('.jean-list-control {\n  color: black;\n  width: 100%;\n  border-radius: 5px;\n  border: 1px solid black;\n  padding: 5px;\n}\n.jean-list-control #body {\n  overflow-y: scroll;\n}\n.jean-list-control #body #jean-list-element {\n  color: black;\n}\n');
+('.jean-list-control {\n  color: white;\n  width: 100%;\n  border-radius: 5px;\n  border: 1px solid black;\n  padding: 5px;\n}\n.jean-list-control .body {\n  overflow-y: scroll;\n}\n.jean-list-control .body .jean-list-element {\n  padding: 5px;\n  margin-top: 5px;\n  color: white;\n  background: gray;\n  border-radius: 5px;\n}\n.jean-list-control .body .jean-list-element .header {\n  position: relative;\n  cursor: pointer;\n}\n.jean-list-control .body .jean-list-element .header:hover {\n  color: lightgray;\n}\n.jean-list-control .body .jean-list-element .header .toggle {\n  position: absolute;\n  top: 0;\n  right: 5;\n  font-weight: bold;\n}\n.jean-list-control .body .jean-list-element .separator {\n  width: 100%;\n  height: 2px;\n  background: white;\n}\n.jean-list-control .body .jean-list-element .separator-invisible {\n  visibility: hidden;\n}\n.jean-list-control .body .jean-list-element .body {\n  overflow: hidden;\n  /* .details {\n                    height: 100%;\n                } */\n}\n.jean-list-control .body .jean-list-element .body-no-height {\n  height: 0;\n}\n');
 
  	 return require('src/ListControl'); 
 }));
