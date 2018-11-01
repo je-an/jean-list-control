@@ -10,9 +10,9 @@ require([
         document.body.style.padding = "5px";
         document.body.appendChild(listControl.element);
         JeanPerformance.startMeasurement();
-        for (var i = 0; i < 1000; i++) {
+        for (var i = 0; i < 10000; i++) {
             listControl.add(i.toString(), "JeanListElement " + i, "DetailInfo " + i);
         }
         JeanPerformance.stopMeasurement();
-        listControl.commit();
+     //   listControl.commit();
     });

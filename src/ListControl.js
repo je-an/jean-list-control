@@ -35,6 +35,7 @@ define([ // jscs:ignore
             this._listElementFragment = document.createDocumentFragment();
             var body = this.body = DomUtil.getChildByClass(this.element, "body");
             body.addEventListener("click", this._onEntryClick.bind(this));
+            body.addEventListener("scroll", this._onScroll.bind(this));
 
             if (options.height > 0) {
                 body.style.height = options.height + "px";
@@ -64,10 +65,10 @@ define([ // jscs:ignore
                 Failure.throwTypeError("One or more values are invalid");
             }
             var listElement = this._listElement, entry = listElement.cloneNode(true),
-                fragment = this._listElementFragment;
+                fragment = this._listElementFragment, body = this.body;
             entry.setAttribute("id", id);
             this._setEntryValue(entry, name, details);
-            fragment.appendChild(entry);
+            body.appendChild(entry);
             return true;
         };
         /** 
@@ -123,7 +124,7 @@ define([ // jscs:ignore
         ListControl.prototype._setEntryValue = function (entry, name, details) {
             DomUtil.getChildByClass(entry, "name").innerHTML = name;
             DomUtil.getChildByClass(entry, "details").innerHTML = details;
-        }
+        };
         /** 
          * @param {String} id - the id of the list element
          * @param {String} name - the name of the list element
@@ -135,27 +136,33 @@ define([ // jscs:ignore
         };
         /** @param {Object} e - event object */
         ListControl.prototype._onEntryClick = function (e) {
-            var entry = DomUtil.getAncestorByClass(e.target, "jean-list-element"),
-                value = entry.getAttribute("data-state"),
-                body = DomUtil.getChildByClass(entry, "body"),
-                separator = DomUtil.getChildByClass(entry, "separator"),
-                toggle = DomUtil.getChildByClass(entry, "toggle");
-            switch (parseInt(value)) {
-                case this.ToggleValue.COLLAPSED:
-                    // Display it
-                    entry.setAttribute("data-state", this.ToggleValue.DISPLAYED);
-                    separator.classList.remove("separator-invisible");
-                    body.classList.remove("body-no-height");
-                    toggle.innerHTML = "&and;";
-                    break;
-                case this.ToggleValue.DISPLAYED:
-                    // Collapse it
-                    entry.setAttribute("data-state", this.ToggleValue.COLLAPSED);
-                    separator.classList.add("separator-invisible");
-                    body.classList.add("body-no-height");
-                    toggle.innerHTML = "&or;";
-                    break;
+            var entry = DomUtil.getAncestorByClass(e.target, "jean-list-element");
+            if (TypeCheck.isDefined(entry)) {
+                var value = entry.getAttribute("data-state"),
+                    body = DomUtil.getChildByClass(entry, "body"),
+                    separator = DomUtil.getChildByClass(entry, "separator"),
+                    toggle = DomUtil.getChildByClass(entry, "toggle");
+                switch (parseInt(value)) {
+                    case this.ToggleValue.COLLAPSED:
+                        // Display it
+                        entry.setAttribute("data-state", this.ToggleValue.DISPLAYED);
+                        separator.classList.remove("separator-invisible");
+                        body.classList.remove("body-no-height");
+                        toggle.innerHTML = "&and;";
+                        break;
+                    case this.ToggleValue.DISPLAYED:
+                        // Collapse it
+                        entry.setAttribute("data-state", this.ToggleValue.COLLAPSED);
+                        separator.classList.add("separator-invisible");
+                        body.classList.add("body-no-height");
+                        toggle.innerHTML = "&or;";
+                        break;
+                }
             }
+        };
+        /** @param {Object} e - event object */
+        ListControl.prototype._onScroll = function (e) {
+            console.log("onscroll");
         };
         return ListControl;
     });
